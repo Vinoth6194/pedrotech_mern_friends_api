@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const FriendModel = require("./models/Friends");
 
 //*database connection
 mongoose.connect(
@@ -17,7 +18,14 @@ mongoose.connect(
     }
   }
 );
-
+app.get("/friends", (req, res) => {
+  res.send("Works");
+});
+app.get("/insert", (req, res) => {
+  const friend = new FriendModel({ name: "Vinoth", age: "26" });
+  friend.save();
+  res.send("Inserted with  get  method");
+});
 app.listen(3001, () => {
   console.log("Server is running at 3001");
 });
