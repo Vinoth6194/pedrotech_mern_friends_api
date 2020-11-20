@@ -18,11 +18,17 @@ mongoose.connect(
     }
   }
 );
-app.get("/friends", (req, res) => {
-  res.send("Works");
+app.get("/read", (req, res) => {
+  FriendModel.find({}, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
 });
 app.get("/insert", (req, res) => {
-  const friend = new FriendModel({ name: "Vinoth", age: "26" });
+  const friend = new FriendModel({ name: "Demo2", age: "3" });
   friend.save();
   res.send("Inserted with  get  method");
 });
