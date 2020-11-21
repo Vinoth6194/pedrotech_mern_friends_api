@@ -35,7 +35,8 @@ app.post("/addFriend", (req, res) => {
   const age = req.body.age;
   const friend = new FriendModel({ name: name, age: age });
   friend.save();
-  res.send("Success");
+  // res.send("Success");
+  res.send(friend);
 });
 app.put("/update", async (req, res) => {
   const newAge = req.body.newAge;
