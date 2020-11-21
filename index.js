@@ -51,6 +51,11 @@ app.put("/update", async (req, res) => {
   }
   res.send("updated");
 });
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  FriendModel.findByIdAndRemove(id).exec();
+  res.send("Deleted");
+});
 app.listen(3001, () => {
   console.log("Server is running at 3001");
 });
