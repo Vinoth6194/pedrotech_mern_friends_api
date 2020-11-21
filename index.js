@@ -37,6 +37,20 @@ app.post("/addFriend", (req, res) => {
   friend.save();
   res.send("Success");
 });
+app.put("/update", async (req, res) => {
+  const newAge = req.body.newAge;
+  const id = req.body.id;
+  console.log(newAge, id);
+  try {
+    await FriendModel.findById(id, (error, friendToUpdate) => {
+      friendToUpdate.age = Number(newAge);
+      friendToUpdate.save();
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  res.send("updated");
+});
 app.listen(3001, () => {
   console.log("Server is running at 3001");
 });
